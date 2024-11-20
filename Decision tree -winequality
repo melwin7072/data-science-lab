@@ -1,0 +1,28 @@
+wine_data=pd.read.csv("/content/wine quality-red.csv",sep=1")
+print(wine_data.head())
+if 'color' in wine_data.columns
+wine_data=pd.get_dummies(wine_data,columns=['color'].drop-first=True)
+x=wine_data.drop('quality,axis=1)
+y=wine_data['quality']
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state['quality']
+dt_classifire=DecisionTreeClassifire(random_state=42,maxdepth=3)
+dt_classifire=fit(x_train,y_train)
+
+1.classification report
+
+y_pred=dt_classifire.predict(x_test)
+classification_rep=classification_report(y_test,y_pred,zero,division=1)
+print("classification report")
+print("classification-rep")
+
+2.confusion matrix
+
+conf_matrix=confusion_matrix(y_test,y_pred)
+print("\n confusion matrix:")
+print(conf.matrix
+
+3.plot decision tree
+
+plt.figure[figsize=(12,8)]
+tree.plot-tree(dt-classifire,feature-names=x.columns,class names=[str(label)]
+for label in dt-classifire
