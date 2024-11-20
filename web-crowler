@@ -1,0 +1,25 @@
+import requests
+from bs4 import BeautifulSoup
+
+print("Batch : MCA 2023-25")
+
+# Function to get data from the URL
+def getdata(url):
+    r = requests.get(url)
+    return r.content
+
+# URL to crawl
+#url = "https://www.toppr.com/guides/essays/globalization-essay/"
+url="https://www.w3schools.com/python/default.asp"
+htmldata = getdata(url)
+
+# Parse the HTML data with BeautifulSoup
+soup = BeautifulSoup(htmldata, 'html.parser')
+
+# Find all <p> tags and display their content
+paragraphs = soup.find_all('p')
+print("<P> tag count:", len(paragraphs))  # Display the count of <p> tags
+
+for p in paragraphs:
+    print(p.get_text())  # Print the text content of each <p> tag
+
