@@ -1,0 +1,38 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.dataset import.iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import classification_report
+
+iris=load_iris()
+x=pd.DataFrame(iris.data,columns,iris.feature-names)
+y=pd.series(iris.target)
+x_train,x_test,y_train,y_test_split(x,y_test,test_size=0.2.random state=42)
+clf=DecisionTreeClassifire(max_depth=3,randomstate=42)
+clf.fit(x_train,y_train)
+y_pred=(if.predict(x_test))
+
+1. classification report
+
+print("classification report")
+print("classification-report(y_test,y_pred))
+
+2.confusion matrix
+
+cm=comfusionmatrix(y_test,y_pred)
+print("confusion matrix")
+print(cm)
+plt.figure(figsize=(6,4))
+sns.heatmap((cm,cannot=True,fmt='d',cmap='blues';cbar=false)
+plt.xlabel("predicted")
+plt.ylabel("true")
+plt.title("confusion matrix")
+
+3. plot decision tree
+
+plt.figure(figsize=(20,10))
+plot.tree(clf,filled=true,feature=names=iris.feature-names,class-names=iris.target-names rounded=true,fontsize=12)
+plt.title('decision tree')
+plt.show()
