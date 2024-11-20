@@ -1,0 +1,66 @@
+Program 13: Dataset: <Breast_Cancer.csv>
+a) Conduct exploratory data analysis on the given dataset and report 
+the details.
+b) Visualize the analysis results using (i) scatter plot (ii) histogram & 
+(iii) box plot.
+c) Implement the Naïve Bayes classification algorithm using the 
+dataset. Display the classification report with the accuracy
+
+
+a) Conduct exploratory data analysis 
+import pandas as pd
+df = pd.read_csv('/content/breast-cancer.csv') # Load the Breast Cancer dataset
+print(df.head()) # first few rows
+print(df.isnull().sum()) # Check for missing values
+print(df.describe()) # Summary statistics of the dataset
+# Target variable distribution (if the dataset contains target classes, such as 'diagnosis')
+if 'diagnosis' in df.columns:
+print(df['diagnosis'].value_counts())
+
+
+# b) visualization
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Scatter plot (example: comparing 'radius_mean' and 'texture_mean')
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='radius_mean', y='texture_mean', hue='diagnosis', 
+data=df)
+plt.title("Scatter plot of Radius Mean vs Texture Mean")
+plt.show()
+# Histogram (example: distribution of 'radius_mean')
+plt.figure(figsize=(8, 6))
+df['radius_mean'].hist(bins=30)
+plt.title("Histogram of Radius Mean")
+plt.xlabel("Radius Mean")
+plt.ylabel("Frequency")
+plt.show()
+# Box plot (example: distribution of 'radius_mean' grouped by 'diagnosis')
+plt.figure(figsize=(8, 6))
+sns.boxplot(x='diagnosis', y='radius_mean', data=df)
+plt.title("Box plot of Radius Mean grouped by Diagnosis")
+plt.show()
+
+
+(c): Implementing Naïve Bayes Classification
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import classification_report, accuracy_score
+# df.dropna() - In Pandas to remove rows (or columns) that contain missing 
+# values from a DataFrame
+df_cleaned = df.dropna()
+# Define features (X) and target (y)
+X = df_cleaned.drop(['diagnosis'], axis=1) # Exclude 'diagnosis' for features
+y = df_cleaned['diagnosis'] # 'diagnosis' is the target variable
+# Split the data into training and testing sets (80% train, 20% test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, 
+random_state=42)
+nb = GaussianNB() # Initialize the Naïve Bayes classifier
+nb.fit(X_train, y_train) # Train the model
+y_pred = nb.predict(X_test) # Predict on the test set
+# Display the classification report and accuracy
+print("Classification Report:\n", classification_report(y_test, y_pred))
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.4f }")
+
+
+
