@@ -1,0 +1,9 @@
+confusion matrix
+
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+# Confusion matrix
+cm = confusion_matrix(y_test, y_pred, labels=knn.classes_)
+cm_display = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=knn.classes_)
+cm_display.plot(cmap="Blues")
+plt.title("Confusion Matrix")
+plt.show()
