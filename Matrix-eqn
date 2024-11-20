@@ -1,0 +1,10 @@
+import numpy as np;
+X = np.array([[1, 2],
+[3, 4]])
+Y = np.array([[5,6], [7,8]])
+print("Matrix X is :\n ",X)
+print("Matrix Y is : \n",Y)
+a=np.power(X,2)
+print("X^2=",a)
+result = a + 2 * Y
+print("X^2+2*Y is \n ",result)
