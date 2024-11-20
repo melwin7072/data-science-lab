@@ -1,0 +1,65 @@
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, accuracy_score
+
+df = pd.read_csv('/content/winequality-red.csv')
+
+# Display the first few rows, check for null values, and describe the dataset
+print(df.head())
+print(df.isnull().sum())
+print(df.describe())
+print(df['quality'].value_counts())
+
+# Visualization
+# (i) Scatter plot
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='alcohol', y='pH', hue='quality', data=df)
+plt.title("Scatter plot of Alcohol vs pH")
+plt.show()
+
+# (ii) Histogram
+plt.figure(figsize=(8, 6))
+df['alcohol'].hist(bins=30)
+plt.title("Histogram of Alcohol")
+plt.xlabel("Alcohol")
+plt.ylabel("Frequency")
+plt.show()
+
+# (iii) Box plot
+plt.figure(figsize=(8, 6))
+sns.boxplot(x='quality', y='alcohol', data=df)
+plt.title("Box plot of Alcohol grouped by Quality")
+plt.show()
+
+
+# Train-test split
+X = df.drop('quality', axis=1)  # Features (all columns except 'quality')
+y = df['quality']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# k-NN Classification
+k_values = [1, 3, 5, 7, 9, 11, 13, 15]
+for k in k_values:
+    # Create and train the k-NN classifier
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X_train_scaled, y_train)
+    y_pred = knn.predict(X_test_scaled)
+
+    # Calculate accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"Accuracy with k={k}: {accuracy:.4f}")
+
+    # Confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+    cm_display = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=knn.classes_)
+    cm_display.plot(cmap="Blues")
+    plt.title(f"Confusion Matrix (k={k})")
+    plt.show()
