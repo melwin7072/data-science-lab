@@ -1,0 +1,25 @@
+import numpy as np
+
+# Creating an array from a list
+
+array_from_list = np.array([1, 2, 3, 4, 5])
+
+print("Array from list:", array_from_list)
+
+# Creating an array with a range of values
+
+array_with_range = np.arange(10)
+
+print("Array with range:", array_with_range)
+
+# Creating an array of zeros
+
+zeros_array = np.zeros((3, 3))
+
+print("Array of zeros:\n", zeros_array)
+
+# Creating an array of ones
+
+ones_array = np.ones((2, 5))
+
+print("Array of ones:\n", ones_array)
