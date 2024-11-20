@@ -1,0 +1,145 @@
+import matplotlib.pyplot as plt
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 5, 7, 11]
+plt.plot(x, y, marker='o')# Create line plot
+plt.title('Line Plot')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.show()
+
+import matplotlib.pyplot as plt
+categories = ['A', 'B', 'C', 'D', 'E']
+values = [4, 7, 1, 8, 5]
+plt.bar(categories, values) # Create a bar plot
+# Add labels and title
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.title('Simple Bar Plot')
+plt.show()
+
+# Create bar plot
+import matplotlib.pyplot as plt
+categories = ['A', 'B', 'C', 'D']
+values = [5, 7, 3, 8]
+plt.bar(categories, values, color='purple')# Create bar plot
+plt.title('Bar Plot')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.show()
+
+import matplotlib.pyplot as plt
+import numpy as np
+data = np.random.randn(1000) #data=np.random.normal(0,1,1000)
+#np.random.randn() is a NumPy function that returns samples from the "standard
+# normal" distribution. Mean (μ) = 0&Standard deviation (σ) = 1
+plt.hist(data, bins=30, color='blue', edgecolor='black')
+#bins=30: No: of bins (or bars) in the histogram.
+#color='blue': Color of the bars
+#edgecolor='black': Color of the edges (borders) of the bars to black
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.show()
+
+import matplotlib.pyplot as plt
+x = [5, 7, 8, 7, 2, 17, 2, 9, 4, 11, 12, 9, 6]
+y = [99, 86, 87, 88, 100, 86, 103, 87, 94, 78, 77, 85, 86]
+plt.scatter(x, y, color='red')
+plt.title('Scatter Plot')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.show()
+
+import matplotlib.pyplot as plt
+sizes = [15, 30, 45, 10]
+labels = ['A', 'B', 'C', 'D']
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue']
+plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True,
+startangle=140)
+plt.title('Pie Chart')
+plt.axis('equal') # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.show()
+
+import matplotlib.pyplot as plt
+import numpy as np
+# Sample data
+data = [np.random.normal(0, std, 100) for std in range(1, 4)]
+# np.random.normal(0, std, 100) - np.random.normal(mean, std deviation,size)
+# for std in range(1, 4) – list comprehension that iterates over a range of values ie, 1,2,3
+plt.boxplot(data) # Create a box plot
+# Add labels and title
+plt.xlabel('Data Sets')
+plt.ylabel('Values')
+plt.title('Simple Box Plot')
+# Show the plot
+plt.show()
+
+import matplotlib.pyplot as plt
+# Data for the first scatter plot
+x1 = [1, 2, 3, 4, 5]
+y1 = [2, 3, 4, 5, 6]
+# Data for the second scatter plot
+x2 = [2, 3, 4, 5, 6]
+y2 = [3, 4, 5, 6, 7]
+# Data for the third scatter plot
+x3 = [1, 3, 4, 7, 8]
+y3 = [5, 3, 8, 3, 5]
+# Plotting the first scatter plot
+plt.scatter(x1, y1, color='red', label='Dataset 1')
+# Plotting the second scatter plot
+plt.scatter(x2, y2, color='blue', label='Dataset 2')
+# Plotting the third scatter plot
+plt.scatter(x3, y3, color='green', label='Dataset 3')
+# Adding labels and title
+plt.xlabel('X-axis label')
+plt.ylabel('Y-axis label')
+plt.title('Multiple Scatter Plots')
+plt.legend() # Adding a legend
+plt.show()
+
+# Creating a bubble chart
+import matplotlib.pyplot as plt
+# Sample data
+x = [1, 2, 3, 4, 5]
+y = [10, 15, 13, 8, 7]
+sizes = [100, 200, 300, 400, 500] # Bubble sizes
+plt.scatter(x, y, s=sizes, alpha=0.5, c='blue')
+# Adding labels and title
+plt.xlabel('X-axis Label')
+plt.ylabel('Y-axis Label')
+plt.title('Bubble Chart Example')
+plt.show()
+
+import matplotlib.pyplot as plt
+# Sample data with an additional dimension for colors
+x = [1, 2, 3, 4, 5]
+y = [10, 15, 13, 8, 7]
+sizes = [100, 200, 300, 400, 500]
+colors = [20, 30, 40, 50, 60] # Color dimension
+# Creating a bubble chart with varying colors
+plt.scatter(x, y, s=sizes, c=colors, alpha=0.6, cmap='viridis')
+plt.colorbar(label='Color scale')# Adding a color bar
+plt.xlabel('X-axis Label')
+plt.ylabel('Y-axis Label')
+plt.title('Bubble Chart with Color Dimension')
+plt.show()
+
+import matplotlib.pyplot as plt
+import numpy as np
+# Sample data
+x = np.linspace(0, 10, 100)
+y1 = np.sin(x)
+y2 = np.cos(x)
+# Create a figure with 2 subplots (vertically stacked)
+fig, axs = plt.subplots(2, 1, figsize=(8, 8))
+# First subplot
+axs[0].plot(x, y1, 'b')
+axs[0].set_title('Sine Function')
+axs[0].set_ylabel('sin(x)')
+# Second subplot
+axs[1].plot(x, y2, 'r')
+axs[1].set_title('Cosine Function')
+axs[1].set_ylabel('cos(x)')
+axs[1].set_xlabel('x')
+plt.tight_layout()# Adjust layout to prevent overlap
+plt.show()
