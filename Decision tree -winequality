@@ -1,3 +1,11 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.dataset import.iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import classification_report
+
 wine_data=pd.read.csv("/content/wine quality-red.csv",sep=1")
 print(wine_data.head())
 if 'color' in wine_data.columns
