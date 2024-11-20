@@ -1,0 +1,31 @@
+import numpy as np
+
+# Creating arrays
+
+a = np.array([1, 2, 3])
+
+b = np.array([4, 5, 6])
+
+# Element-wise addition
+
+add_result = np.add(a, b)
+
+print("Addition:", add_result)
+
+# Element-wise subtraction
+
+sub_result = np.subtract(a, b)
+
+print("Subtraction:", sub_result)
+
+# Element-wise multiplication
+
+mul_result = np.multiply(a, b)
+
+print("Multiplication:", mul_result)
+
+# Element-wise division
+
+div_result = np.divide(a, b)
+
+print("Division:", div_result)
