@@ -1,0 +1,56 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import metrics
+#exploratory analysis
+data=load_breast_cancer()
+df=pd.DataFrame(data.data, columns=data.feature_names)
+df['target']=data.target
+print(df.head(5))
+print(df.info())
+print(df.isnull().sum())
+print(df.describe())
+print(df['target'].value_counts())
+#scatter plot
+plt.figure(figsize=(8,6))
+sns.scatterplot(x='mean radius',y='mean texture',hue='target',data=df)
+plt.title('mean radius vs mean texture')
+plt.show()
+#histogram
+plt.figure(figsize=(8,6))
+df['mean radius'].hist(bins=30)
+plt.title('mean radius distribution')
+plt.xlabel('mean radius')
+plt.ylabel('frequency')
+plt.show()
+#box plot
+plt.figure(figsize=(8,6))
+sns.boxplot(x='target',y='mean radius',data=df)
+plt.title('mean radius distribution by target')
+plt.xlabel('target')
+plt.ylabel('mean radius')
+plt.show()
+#KNN
+x=df.drop('target',axis=1)
+y=df['target']
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3,random_state=42)
+k_values=[3,5,7,9]
+for k in k_values:
+  knn=KNeighborsClassifier(n_neighbors=k)
+  knn.fit(x_train,y_train)
+  y_pred=knn.predict(x_test)
+  accuracy=metrics.accuracy_score(y_test,y_pred)
+  print(f"accuracy with k={k} : {accuracy*100:.2f}%")
+
+
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+# Confusion matrix
+cm = confusion_matrix(y_test, y_pred, labels=knn.classes_)
+cm_display = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=knn.classes_)
+cm_display.plot(cmap="Blues")
+plt.title("Confusion Matrix")
+plt.show()
